@@ -138,7 +138,30 @@ public class Calc {
 		return ret;
 	}
 
-	public static double[][] multipleMat(double[][]A,double[][]B)
+    public static double[][] subtractMat(double[][]A,double[][]B)
+    {
+        if(A.length!=B.length)throw new RuntimeException("行数の不一致");
+        for(int i=0;i<A.length;i++)
+        {
+            if(A[i].length!=B[i].length)throw new RuntimeException("列の不一致");
+        }
+        double[][] ret=new double[A.length][];
+        for(int i=0;i<A.length;i++)
+        {
+            ret[i]=new double[A[i].length];
+        }
+        for(int i=0;i<A.length;i++)
+        {
+            for(int j=0;j<A[i].length;j++)
+            {
+                ret[i][j]=A[i][j]-B[i][j];
+            }
+        }
+        return ret;
+    }
+
+
+    public static double[][] multipleMat(double[][]A,double[][]B)
 	{
 		int colmunA=0;
 		int colmunB=0;
@@ -195,8 +218,8 @@ public class Calc {
 
 	public static double vecInf(double[] x)
 	{
-		double ret=Double.NEGATIVE_INFINITY;
-		for(int i=0;i<x.length;i++)ret=Math.max(ret, x[i]);
+		double ret=0;
+		for(int i=0;i<x.length;i++)ret=Math.max(ret, Math.abs(x[i]));
 		return ret;
 	}
 

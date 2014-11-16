@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -135,4 +136,16 @@ public class CalcTest {
 		System.out.println(Calc.matNorm1(input));
 		System.out.println(Calc.matNormInf(input));
 	}
+
+    @Test
+    public void GaussLUDissolve()
+    {
+        Matrix mat=new Matrix(new double[][]
+                {
+                        {1,3},
+                        {4,5}
+                });
+        LUPair pair=mat.DissolveLU();
+        Matrix lu=pair.getL().MultiplyWith(pair.getU());
+        Assert.assertNotEquals(mat.SubtractWith(lu).NormN(NormType.One),0,1.0);    }
 }

@@ -1,3 +1,5 @@
+import VectorGenerater.IVectorGenerater;
+
 /**
  * Created by LimeStreem on 2014/10/27.
  */
@@ -26,6 +28,14 @@ public class Vector {
     public Vector(int size)
     {
         setElements(new double[size]);
+    }
+
+    public Vector(IVectorGenerater gen)
+    {
+        this(gen.size());
+        for (int i = 0; i < size; i++) {
+            elements[i]=gen.getAt(i);
+        }
     }
 
     public String toString()
